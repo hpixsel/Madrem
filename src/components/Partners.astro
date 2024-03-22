@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets"
+
+const images = await Astro.glob("/src/assets/partnerzy/*.{jpeg,jpg,png}").then(
+  files => files.map(file => file.default)
+)
+---
+
+<div class="partners">
+  <div class="wrapper">
+    <h2>Partnerzy</h2>
+    <div class="partners__grid">
+      {
+        images.map(image => {
+          return <Image src={image} alt="partners" />
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .partners {
+    background-color: var(--clr-secondary-300);
+    padding-block: 1.5rem;
+  }
+
+  .partners h2 {
+    text-transform: uppercase;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .partners__grid {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 60rem) {
+    .partners {
+      padding-block: 3rem;
+    }
+
+    .partners h2 {
+      font-size: 3rem;
+    }
+
+    .partners__grid {
+      margin-top: 2rem;
+    }
+  }
+</style>

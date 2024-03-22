@@ -1,0 +1,6 @@
+<svg width="32" height="64" viewBox="0 0 32 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Scroll">
+<path id="container" d="M1.5 16C1.5 7.99187 7.99187 1.5 16 1.5C24.0081 1.5 30.5 7.99187 30.5 16V48C30.5 56.0081 24.0081 62.5 16 62.5C7.99187 62.5 1.5 56.0081 1.5 48V16Z" stroke="#FDFDFA" stroke-width="3"/>
+<path id="dot" d="M11.5 15C11.5 12.5147 13.5147 10.5 16 10.5C18.4853 10.5 20.5 12.5147 20.5 15C20.5 17.4853 18.4853 19.5 16 19.5C13.5147 19.5 11.5 17.4853 11.5 15Z" stroke="#FDFDFA" stroke-width="3"/>
+</g>
+</svg>
