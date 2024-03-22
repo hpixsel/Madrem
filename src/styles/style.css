@@ -1,0 +1,62 @@
+:root {
+  --clr-text: #0b0a05;
+  --clr-main: #fdfdfa;
+  --clr-secondary: #facc15;
+  --clr-secondary-300: #faf5e1;
+  --clr-primary: #efd87b;
+  --clr-accent: #f9d74e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--clr-main);
+  color: var(--clr-text);
+  font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--clr-text);
+  line-height: 1;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.wrapper {
+  width: min(calc(100% - 3rem), 60rem);
+  margin-inline: auto;
+}
+
+main {
+  flex-grow: 1;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
