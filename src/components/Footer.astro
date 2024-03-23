@@ -4,9 +4,9 @@
     <p>broken@op.pl</p>
     <p>Tel: 508 112 123</p>
     <p>
-      Strona wykonana przez <a href="https://bielsania.netlify.app/"
-        >Bielsania</a
-      >
+      Strona wykonana przez <a target="_blank" href="https://bielsania.pl">
+        Bielsania
+      </a>
     </p>
   </div>
 </footer>
@@ -23,10 +23,23 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: space-between;
+  }
+
+  footer > div > :is(:first-child, :last-child) {
+    flex-basis: 100%;
   }
 
   footer a {
     color: inherit;
+  }
+
+  @media (min-width: 60rem) {
+    footer .wrapper {
+      justify-content: space-between;
+    }
+
+    footer > div > :is(:first-child, :last-child) {
+      flex-basis: initial;
+    }
   }
 </style>

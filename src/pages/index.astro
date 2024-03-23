@@ -4,11 +4,25 @@ import Hero from "../components/Hero.astro"
 import Expierience from "../components/Expierience.astro"
 import Gallery from "../components/Gallery.astro"
 import Partners from "../components/Partners.astro"
+import logoLight from "../assets/Logo-Dark.png"
+import { Image } from "astro:assets"
 ---
 
 <Layout title="Madrem">
   <Hero />
   <Expierience />
   <Gallery />
+  <div class="logo wrapper">
+    <Image src={logoLight} alt="Logo" loading="lazy" />
+  </div>
   <Partners />
 </Layout>
+
+<style>
+  .logo img {
+    width: 75%;
+    height: auto;
+    margin-inline: auto;
+    margin-bottom: 5rem;
+  }
+</style>
