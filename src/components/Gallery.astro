@@ -159,17 +159,17 @@ const filteredImages = folderName.map(folder => {
 
 <script>
   const images = document.querySelectorAll(".gallery__grid img")
-  const previewImg = document.querySelector("#preview__img")
+  const previewImg: any = document.querySelector("#preview__img")
   const preview = document.querySelector(".preview")
 
   images.forEach(image => {
-    image.addEventListener("click", img => {
+    image.addEventListener("click", (img: any) => {
       previewImg.src = img.target.attributes.src.value
       preview?.classList.add("open")
     })
   })
 
-  preview?.addEventListener("click", e => {
+  preview?.addEventListener("click", (e: any) => {
     if (e.target.className == "preview__container") {
       preview?.classList.remove("open")
     }
