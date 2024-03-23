@@ -34,7 +34,8 @@ const images2 = await Astro.glob(
   <div class="gallery__grid">
     {
       images.map(image => {
-        return <Image src={image} alt="Galeria kategorii" loading="lazy" />
+        const alt = image.src.split("/")
+        return <Image src={image} alt={alt[alt.length - 1]} loading="lazy" />
       })
     }
   </div>
