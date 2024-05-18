@@ -38,22 +38,23 @@ const images2 = await Astro.glob(
     <Image src={bgR} alt="Right side of heading" loading="eager" />
   </div>
 
-  <div class="gallery__slider">
-    {
-      images.map((image, id) => {
-        const alt = image.src.split("/")
-        const dataId = "gallery1-" + id
-        return (
-          <Image
-            id={dataId}
-            src={image}
-            alt={alt[alt.length - 1]}
-            loading="lazy"
-            inferSize
-          />
-        )
-      })
-    }
+  <div class="swiper gallery-swiper1 gallery__slider">
+    <div class="swiper-wrapper">
+      {
+        images.map(image => {
+          const alt = image.src.split("/")
+          return (
+            <Image
+              class="swiper-slide"
+              src={image}
+              alt={alt[alt.length - 1]}
+              loading="lazy"
+              inferSize
+            />
+          )
+        })
+      }
+    </div>
   </div>
 
   <div class="gallery__info wrapper">
@@ -91,22 +92,23 @@ const images2 = await Astro.glob(
     </div>
     <Image src={bgR} alt="Right side of heading" loading="eager" />
   </div>
-  <div class="gallery__slider">
-    {
-      images2.map((image, id) => {
-        const alt = image.src.split("/")
-        const dataId = "gallery2-" + id
-        return (
-          <Image
-            id={dataId}
-            src={image}
-            alt={alt[alt.length - 1]}
-            loading="lazy"
-            inferSize
-          />
-        )
-      })
-    }
+  <div class="swiper gallery-swiper2 gallery__slider">
+    <div class="swiper-wrapper">
+      {
+        images2.map(image => {
+          const alt = image.src.split("/")
+          return (
+            <Image
+              class="swiper-slide"
+              src={image}
+              alt={alt[alt.length - 1]}
+              loading="lazy"
+              inferSize
+            />
+          )
+        })
+      }
+    </div>
   </div>
   <div class="gallery__info wrapper">
     <div class="info__item">
@@ -123,35 +125,6 @@ const images2 = await Astro.glob(
     </div>
   </div>
 </div>
-
-<!-- <div class="gallery wrapper">
-  <div class="heading">
-    <Image src={bgL} alt="Left side of heading" loading="eager" />
-    <div class="heading__title">
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22.5495 4.64455C19.2992 1.41941 12.6752 1.05826 8.87746 4.88112C8.2546 5.49084 8.36718 6.18798 8.7906 6.61141C9.08946 6.92284 9.56203 7.05998 10.0106 6.92284C12.6626 6.08855 15.1157 6.01426 17.0706 7.45826L16.0249 10.2474C15.626 11.3308 15.838 12.0903 16.5477 12.8126L19.4237 15.7011C19.9969 16.2863 20.6317 16.4611 21.466 16.2611L23.4832 15.8005L24.4546 16.772L24.2923 18.1914C24.2055 18.7766 24.2797 19.1377 24.7906 19.6486L25.762 20.5823C26.2969 21.1177 26.982 21.1674 27.4923 20.6565L31.4895 16.6851C31.9997 16.1743 31.9249 15.4897 31.402 14.9417L30.4432 13.9828C29.9575 13.4845 29.5717 13.3851 29.0112 13.4726L27.5797 13.6468L26.5957 12.7006L27.1935 10.5588C27.3803 9.86169 27.1437 9.21369 26.3963 8.47884L22.5495 4.64455ZM1.26889 25.6C0.0626028 26.6708 -0.000254244 27.7914 1.12089 28.9246L3.10032 30.892C4.20832 32 5.36603 31.9377 6.42489 30.7423L18.4152 17.2823L14.7295 13.6091L1.26889 25.6Z"
-          fill="#0B0A05"></path>
-      </svg>
-      <h2>Rekuperacja i klimatyzacja</h2>
-    </div>
-    <Image src={bgR} alt="Right side of heading" loading="eager" />
-  </div>
-  <div class="gallery__grid">
-    {
-      images2.map(image => {
-        const alt = image.src.split("/")
-        return <Image src={image} alt={alt[alt.length - 1]} loading="lazy" />
-      })
-    }
-  </div>
-</div> -->
 
 <div class="preview">
   <div class="preview__container">
@@ -186,58 +159,41 @@ const images2 = await Astro.glob(
     flex-basis: 3rem;
   }
 
-  .gallery__slider__container {
-    position: relative;
+  .swiper {
+    width: calc(100% - 3rem);
   }
 
-  .gallery__slider {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    height: calc(100dvw - 3rem);
-    overflow-x: scroll;
-    padding-inline: 1.5rem;
+  .swiper-wrapper {
     margin-top: 1.5rem;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     scroll-behavior: smooth;
-    position: relative;
   }
 
-  .gallery__slider::-webkit-scrollbar {
-    display: none;
-  }
-
-  .gallery__slider > img {
+  .swiper-slide {
     scroll-margin-top: 8rem;
-    width: calc(100dvw - 3rem);
-    height: 100%;
     object-fit: cover;
+    overflow: hidden;
     cursor: -moz-grab;
     border-radius: 4px;
-    scroll-snap-align: center;
     filter: grayscale(1);
-    transition: filter 250ms ease-in-out;
-    flex-shrink: 0;
-    flex-grow: 1;
+    transition:
+      filter 250ms ease-in-out,
+      transform 125ms ease-in-out;
+    aspect-ratio: 1/1;
+    transform: scale(0.9);
   }
 
-  .gallery__slider > *:hover {
+  .swiper-slide-active {
     filter: grayscale(0);
+    transform: scale(1);
   }
 
   .slider__arrow {
     position: absolute;
     width: 2rem;
-    height: 2rem;
     aspect-ratio: 1/1;
     top: 50%;
     left: 3rem;
-    z-index: 999;
-    transform: translate(0, -50%);
+    z-index: 2;
     display: none;
   }
 
@@ -262,29 +218,6 @@ const images2 = await Astro.glob(
     font-weight: bold;
   }
 
-  .gallery__grid {
-    display: grid;
-    margin-top: 1.5rem;
-    gap: 1.5rem;
-  }
-
-  .gallery__grid > * {
-    aspect-ratio: 1/1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 4px;
-    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.25)) grayscale(1);
-    transition: filter 250ms ease-in-out;
-    pointer-events: none;
-  }
-
-  .gallery__grid > *:hover {
-    filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.25)) grayscale(0);
-  }
-
   .preview {
     position: fixed;
     inset: 0;
@@ -299,6 +232,7 @@ const images2 = await Astro.glob(
   .preview.open {
     opacity: 1;
     pointer-events: all;
+    z-index: 999;
   }
 
   .preview__container {
@@ -323,29 +257,21 @@ const images2 = await Astro.glob(
       font-size: 1.25rem;
     }
 
-    .gallery__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
     .gallery__slider {
       padding-inline: calc((100% - 60rem) / 2);
-      height: 40rem;
-      gap: 2rem;
     }
 
-    .gallery__slider > img {
+    .swiper {
+      width: initial;
+    }
+
+    .swiper-slide {
       aspect-ratio: 16/9;
       width: 60rem;
-    }
-
-    .slider__arrow {
       display: block;
-      left: calc(100% / 2 - 27.5rem);
-    }
-
-    .slider__arrow.right {
-      left: auto;
-      right: calc(100% / 2 - 27.5rem);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .gallery__info {
@@ -361,29 +287,35 @@ const images2 = await Astro.glob(
 </style>
 
 <script>
-  // const images = document.querySelectorAll(".gallery__grid img")
-  const images = document.querySelectorAll(".gallery__slider img")
+  import Swiper from "swiper"
+  import "swiper/css"
+
+  const images = document.querySelectorAll(".swiper-wrapper img")
   const previewImg: any = document.querySelector("#preview__img")
   const preview = document.querySelector(".preview")
 
-  let gallery1Id = "gallery1-0"
-  let gallery2Id = "gallery2-0"
+  const swiper = new Swiper(".gallery-swiper1", {
+    loop: true,
+    spaceBetween: 24,
+    centeredSlides: true,
+    grabCursor: true,
+    initialSlide: 1,
+    slideToClickedSlide: true,
+  })
+
+  const swiper2 = new Swiper(".gallery-swiper2", {
+    loop: true,
+    spaceBetween: 24,
+    centeredSlides: true,
+    grabCursor: true,
+    initialSlide: 1,
+    slideToClickedSlide: true,
+  })
 
   images.forEach(image => {
     image.addEventListener("click", (img: any) => {
-      const galleryId = img.target.attributes.id.value
-      if (galleryId === gallery1Id || galleryId === gallery2Id) {
-        previewImg.src = img.target.attributes.src.value
-        preview?.classList.add("open")
-      } else {
-        if (galleryId.split("-")[0] === "gallery1") {
-          gallery1Id = galleryId
-          window.location.href = `#${galleryId}`
-        } else if (galleryId.split("-")[0] === "gallery2") {
-          gallery2Id = galleryId
-          window.location.href = `#${galleryId}`
-        }
-      }
+      previewImg.src = img.target.attributes.src.value
+      preview?.classList.add("open")
     })
   })
 
