@@ -39,6 +39,22 @@ const images2 = await Astro.glob(
   </div>
 
   <div class="swiper gallery-swiper1 gallery__slider">
+    <div class="gallery__nav">
+      <Image
+        class="gallery__nav__arrow gallery__nav__arrow--left"
+        id="gallery1__nav__arrow--left"
+        src={leftArrow}
+        alt="Left arrow"
+        loading="eager"
+      />
+      <Image
+        class="gallery__nav__arrow gallery__nav__arrow--right"
+        id="gallery1__nav__arrow--right"
+        src={rightArrow}
+        alt="Right arrow"
+        loading="eager"
+      />
+    </div>
     <div class="swiper-wrapper">
       {
         images.map(image => {
@@ -93,6 +109,22 @@ const images2 = await Astro.glob(
     <Image src={bgR} alt="Right side of heading" loading="eager" />
   </div>
   <div class="swiper gallery-swiper2 gallery__slider">
+    <div class="gallery__nav">
+      <Image
+        class="gallery__nav__arrow gallery__nav__arrow--left"
+        id="gallery2__nav__arrow--left"
+        src={leftArrow}
+        alt="Left arrow"
+        loading="eager"
+      />
+      <Image
+        class="gallery__nav__arrow gallery__nav__arrow--right"
+        id="gallery2__nav__arrow--right"
+        src={rightArrow}
+        alt="Right arrow"
+        loading="eager"
+      />
+    </div>
     <div class="swiper-wrapper">
       {
         images2.map(image => {
@@ -160,6 +192,7 @@ const images2 = await Astro.glob(
   }
 
   .swiper {
+    position: relative;
     width: calc(100% - 3rem);
   }
 
@@ -187,19 +220,19 @@ const images2 = await Astro.glob(
     transform: scale(1);
   }
 
-  .slider__arrow {
+  .gallery__nav__arrow {
     position: absolute;
     width: 2rem;
     aspect-ratio: 1/1;
     top: 50%;
-    left: 3rem;
     z-index: 2;
-    display: none;
+    cursor: pointer;
+    left: 1rem;
   }
 
-  .slider__arrow.right {
+  .gallery__nav__arrow--right {
     left: auto;
-    right: 3rem;
+    right: 1rem;
   }
 
   .gallery__info {
@@ -274,6 +307,14 @@ const images2 = await Astro.glob(
       object-fit: cover;
     }
 
+    .gallery__nav__arrow--left {
+      left: calc((100% - 60rem) / 2 + 1rem);
+    }
+
+    .gallery__nav__arrow--right {
+      right: calc((100% - 60rem) / 2 + 1rem);
+    }
+
     .gallery__info {
       flex-direction: row;
       justify-content: space-evenly;
@@ -310,6 +351,24 @@ const images2 = await Astro.glob(
     grabCursor: true,
     initialSlide: 1,
     slideToClickedSlide: true,
+  })
+
+  const leftArrow1 = document.querySelector("#gallery1__nav__arrow--left")
+  const rightArrow1 = document.querySelector("#gallery1__nav__arrow--right")
+  const leftArrow2 = document.querySelector("#gallery2__nav__arrow--left")
+  const rightArrow2 = document.querySelector("#gallery2__nav__arrow--right")
+
+  leftArrow1?.addEventListener("click", () => {
+    swiper.slidePrev()
+  })
+  rightArrow1?.addEventListener("click", () => {
+    swiper.slideNext()
+  })
+  leftArrow2?.addEventListener("click", () => {
+    swiper2.slidePrev()
+  })
+  rightArrow2?.addEventListener("click", () => {
+    swiper2.slideNext()
   })
 
   images.forEach(image => {
